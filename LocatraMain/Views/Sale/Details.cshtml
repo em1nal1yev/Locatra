@@ -1,0 +1,75 @@
+﻿@model LocatraMain.Models.Sale.Product
+@using LocatraMain.ViewModels.Sale
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.Images.Count; i++)
+                {
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        <img src="@Model.Images.ElementAt(i).ImageUrl" class="d-block w-100" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h3>@Model.Name</h3>
+        <p>@Model.Description</p>
+        <p class="fw-bold">@Model.Price ₼</p>
+
+        <form asp-action="ToggleWishlist" method="post">
+            <input type="hidden" name="productId" value="@Model.Id" />
+            <button type="submit" class="btn btn-outline-danger">❤️ Wishliste əlavə et/sil</button>
+        </form>
+
+        <form asp-action="AddToCart" method="post" class="mt-2">
+            <input type="hidden" name="productId" value="@Model.Id" />
+            <div class="input-group">
+                <input type="number" name="quantity" value="1" class="form-control" min="1" />
+                <button type="submit" class="btn btn-success">Səbətə əlavə et</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<h4>Rəylər</h4>
+@if (Model.Reviews.Any())
+{
+    foreach (var review in Model.Reviews)
+    {
+        <div class="border rounded p-2 mb-2">
+            <strong>@review.User?.UserName</strong> - ⭐ @review.Rating
+            <p>@review.Comment</p>
+            <small class="text-muted">@review.CreatedAt.ToShortDateString()</small>
+        </div>
+    }
+}
+else
+{
+    <p>Hələ rəy yoxdur.</p>
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <form asp-action="AddReview" method="post" class="mt-3">
+        <input type="hidden" name="ProductId" value="@Model.Id" />
+        <div class="mb-2">
+            <label>Reytinq (1-5)</label>
+            <input type="number" name="Rating" class="form-control" min="1" max="5" />
+        </div>
+        <div class="mb-2">
+            <label>Şərh</label>
+            <textarea name="Comment" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Rəy əlavə et</button>
+    </form>
+}

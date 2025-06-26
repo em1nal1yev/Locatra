@@ -1,0 +1,77 @@
+﻿using LocatraMain.DAL;
+using LocatraMain.Models.Auction;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace LocatraMain.Areas.Admin.Controllers
+{
+
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+    public class AdminAuctionController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+
+        public AdminAuctionController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        // SHOW PENDING AUCTIONS
+        public async Task<IActionResult> PendingAuctions()
+        {
+            var pending = await _context.Auctions
+                .Include(a => a.CreatedBy)
+                .Include(a => a.Images)
+                .Where(a => a.Status == AuctionStatus.Pending)
+                .ToListAsync();
+
+            return View(pending);
+        }
+
+        // APPROVE AUCTION
+        public async Task<IActionResult> Approve(int id)
+        {
+            var auction = await _context.Auctions.FindAsync(id);
+            if (auction == null) return NotFound();
+
+            auction.Status = AuctionStatus.Active;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(PendingAuctions));
+        }
+
+        //Reejct auction
+        public async Task<IActionResult> Reject(int id)
+        {
+            var auction = await _context.Auctions
+                .Include(a => a.Images)
+                .Include(a => a.Bids)
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            if (auction == null) return NotFound();
+
+            // Əvvəl şəkilləri və təklifləri sil (əgər cascade yoxdursa)
+            _context.AuctionImages.RemoveRange(auction.Images);
+            _context.Bids.RemoveRange(auction.Bids);
+
+            _context.Auctions.Remove(auction);
+            await _context.SaveChangesAsync();
+
+            TempData["Message"] = "Auksion silindi.";
+            return RedirectToAction(nameof(PendingAuctions));
+        }
+        // END AUCTION (optional)
+        public async Task<IActionResult> EndAuction(int id)
+        {
+            var auction = await _context.Auctions.FindAsync(id);
+            if (auction == null) return NotFound();
+
+            auction.Status = AuctionStatus.Ended;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(PendingAuctions));
+        }
+    }
+}

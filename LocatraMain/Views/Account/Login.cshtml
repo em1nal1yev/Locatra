@@ -1,0 +1,22 @@
+﻿@using LocatraMain.ViewModels
+@model LoginVm
+
+<div class="container mt-5">
+    <form method="post">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input asp-for="Password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+
+        <div class="form-group d-flex justify-content-between align-items-center">
+            <button type="submit" class="btn btn-primary">Daxil ol</button>
+            <a asp-action="ForgotPassword" asp-controller="Account" class="text-danger ml-2" style="font-size: 0.9rem;">Şifrəni unutmusunuz?</a>
+        </div>
+    </form>
+</div>

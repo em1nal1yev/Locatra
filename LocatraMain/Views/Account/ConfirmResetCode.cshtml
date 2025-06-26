@@ -1,0 +1,14 @@
+﻿@model LocatraMain.ViewModels.ConfirmResetVm
+
+<div class="container mt-5">
+    <h3>Emailə gələn OTP kodu daxil et</h3>
+    <form method="post">
+        <input type="hidden" asp-for="Email" />
+        <div class="form-group">
+            <label>OTP Kod</label>
+            <input asp-for="Code" class="form-control" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success mt-2">Təsdiqlə</button>
+    </form>
+</div>

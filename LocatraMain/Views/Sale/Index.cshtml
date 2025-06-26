@@ -1,0 +1,23 @@
+﻿@model List<LocatraMain.Models.Sale.Product>
+@{
+    ViewData["Title"] = "Bütün Məhsullar";
+}
+<div class="container my-5">
+    <h2 class="mb-4">Məhsullar</h2>
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="@(product.Images.FirstOrDefault()?.ImageUrl ?? "/img/no-image.png")" class="card-img-top" alt="@product.Name" />
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p><strong>@product.Price.ToString("0.00") AZN</strong></p>
+                        <a href="@Url.Action("Details", new { id = product.Id })" class="btn btn-primary">Ətraflı</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

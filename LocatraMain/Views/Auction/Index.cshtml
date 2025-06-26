@@ -1,0 +1,68 @@
+﻿@using LocatraMain.Models.Auction
+@model IEnumerable<Auction>
+@{
+    ViewData["Title"] = "Açıq Artırmalar";
+}
+
+    <div class="container my-5">
+        <h2 class="text-center mb-5 fw-bold">Açıq Artırmalar</h2>
+
+        <div class="row g-4">
+            <!-- Create Auction Card -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <a href="@Url.Action("Create", "Auction")" class="text-decoration-none h-100">
+                    <div class="card h-100 shadow-sm text-center d-flex align-items-center justify-content-center" style="border: 2px dashed #0d6efd;">
+                        <div>
+                            <div class="display-4 text-primary">+</div>
+                            <p class="mt-2 text-dark fw-semibold">Auksion Əlavə Et</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Auction Cards -->
+            @foreach (var auction in Model)
+            {
+                var imageUrl = auction.Images?.FirstOrDefault()?.ImageUrl ?? "/uploads/no-image.jfif";
+                var timeLeft = auction.EndTime - DateTime.Now;
+                var isNew = (DateTime.Now - auction.StartTime).TotalHours < 24;
+                var isEndingSoon = timeLeft.TotalHours < 12;
+
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm position-relative auction-card">
+                        <img src="@imageUrl" class="card-img-top" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body">
+                            <h5 class="card-title">@auction.Title</h5>
+                            <p class="card-text text-muted">
+                                @auction.Description?.Substring(0, Math.Min(60, auction.Description.Length))...
+                            </p>
+                            <p class="fw-semibold">💰 Qiymət: @auction.CurrentPrice ₼</p>
+                            <a href="@Url.Action("Details", "Auction", new { id = auction.Id })" class="btn btn-primary w-100">ƏTRAFLI</a>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between small text-muted">
+                            <span>⏰ @auction.EndTime.ToString("dd/MM/yyyy HH:mm")</span>
+                            <span>📨 @((auction.Bids?.Count ?? 0) > 0 ? $"{auction.Bids.Count} təklif" : "Təklif yoxdur")</span>
+                        </div>
+
+                        @* Badges *@
+                        @if (isNew)
+                        {
+                            <span class="badge bg-success position-absolute top-0 end-0 m-2">Yeni</span>
+                        }
+                        else if (isEndingSoon)
+                        {
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">Bitməyə Az Qalıb</span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <style>
+        .auction-card:hover {
+            transform: scale(1.02);
+            transition: 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        }
+    </style>

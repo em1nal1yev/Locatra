@@ -1,0 +1,61 @@
+﻿@using LocatraMain.Models
+@using LocatraMain.Models.Auction
+@model List<Auction>
+
+@{
+    ViewData["Title"] = "Gözləyən Auksionlar";
+}
+
+<div class="container mt-4">
+    <div class="card shadow rounded">
+        <div class="card-header bg-dark text-white text-center">
+            <h4 class="mb-0">🕓 Gözləyən Auksionlar</h4>
+        </div>
+        <div class="card-body">
+            @if (!Model.Any())
+            {
+                <div class="alert alert-info text-center">Hazırda gözləyən auksion yoxdur.</div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle text-center">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Şəkil</th>
+                                <th>Başlıq</th>
+                                <th>İstifadəçi</th>
+                                <th>Qiymət</th>
+                                <th>Vaxt</th>
+                                <th>Əməliyyat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@(item.Images.FirstOrDefault()?.ImageUrl ?? "/uploads/no-image.jfif")"
+                                             alt="Şəkil" width="100" style="object-fit: cover; height: 70px;" class="rounded" />
+                                    </td>
+                                    <td>@item.Title</td>
+                                    <td>@item.CreatedBy?.UserName</td>
+                                    <td>@item.StartingPrice ₼</td>
+                                    <td>@item.StartTime.ToString("g") - @item.EndTime.ToString("g")</td>
+                                    <td>
+                                        <a href="@Url.Action("Approve", "AdminAuction", new { id = item.Id })" class="btn btn-success btn-sm me-2">
+                                            Təsdiqlə
+                                        </a>
+                                        <a href="@Url.Action("Reject", "AdminAuction", new { id = item.Id })" class="btn btn-danger btn-sm">
+                                            Sil
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

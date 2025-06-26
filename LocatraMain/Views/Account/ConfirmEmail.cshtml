@@ -1,0 +1,13 @@
+﻿@using LocatraMain.ViewModels
+@model ConfirmEmailVm
+
+<div class="container">
+    <h3>Emailə gələn kodu daxil edin</h3>
+    <form method="post">
+        <div class="form-group">
+            <label>Təsdiqləmə kodu</label>
+            <input asp-for="VerificationCode" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-success">Təsdiqlə</button>
+    </form>
+</div>

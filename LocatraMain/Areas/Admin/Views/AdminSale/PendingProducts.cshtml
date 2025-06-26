@@ -1,0 +1,41 @@
+﻿@model List<LocatraMain.Models.Sale.Product>
+@{
+    ViewData["Title"] = "Təsdiq Gözləyən Məhsullar";
+}
+<div class="container my-5">
+    <div class="card shadow">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">Təsdiq Gözləyən Məhsullar</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped align-middle">
+                <thead class="table-dark text-white">
+                    <tr>
+                        <th>Ad</th>
+                        <th>Qiymət</th>
+                        <th>Yaradıcı</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Price.ToString("0.00") AZN</td>
+                            <td>@item.CreatedBy?.UserName</td>
+                            <td>
+                                <a asp-action="Approve" asp-route-id="@item.Id" class="btn btn-sm btn-success me-2">
+                                    <i class="bi bi-check-circle"></i> Təsdiqlə
+                                </a>
+                                <a asp-action="Reject" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-x-circle"></i> Rədd et
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
