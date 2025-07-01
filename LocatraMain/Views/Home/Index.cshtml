@@ -1,5 +1,102 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Ana Səhifə";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    .hero-section {
+        background: url('/img/wood-bg.jpg') center/cover no-repeat;
+        color: #fff;
+        padding: 100px 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+        .hero-section h1 {
+            font-family: 'Georgia', serif;
+            font-size: 3rem;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+        }
+
+    .section-title {
+        font-family: 'Georgia', serif;
+        color: #5c3b15;
+        border-bottom: 2px solid #d4af37;
+        display: inline-block;
+        padding-bottom: 5px;
+        margin-bottom: 25px;
+    }
+</style>
+
+<div class="container my-5">
+    <!-- Hero Section -->
+    <div class="hero-section text-center mb-5">
+        <h1 class="fw-bold">🧑‍🌾 Locatra-ya Xoş Gəlmisiniz</h1>
+        <p class="lead">Əl işləri, kənd məhsulları və hərraclarla dolu bir bazar!</p>
+        <div class="mt-4">
+            <a href="/Sale/Index" class="btn btn-warning btn-lg me-3 fw-bold shadow">🪓 Məhsullara Bax</a>
+            <a href="/Auction/Index" class="btn btn-outline-light btn-lg fw-bold">🔨 Hərraclara Keç</a>
+        </div>
+    </div>
+
+    <!-- Qeydiyyat CTA (yalnız qonaq istifadəçi üçün) -->
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="text-center bg-light border rounded shadow-sm p-4 mb-5">
+            <h4 class="mb-2">🔔 Ən yeni məhsul və auksionlardan xəbərdar olmaq üçün qeydiyyatdan keçin!</h4>
+            <a href="/Account/Register" class="btn btn-primary btn-lg">Qeydiyyatdan Keç</a>
+        </div>
+    }
+
+    <!-- Latest Auctions -->
+    <div class="mb-5">
+        <h2 class="section-title">🕒 Son Hərraclar</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            @foreach (var auction in ViewBag.LatestAuctions)
+            {
+                var image = (auction.Images as IEnumerable<dynamic>)?.FirstOrDefault()?.ImageUrl ?? "/img/no-image.png";
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="@image" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@auction.Title</h5>
+                            <p class="card-text text-muted">Status: @auction.Status</p>
+                            <a href="/Auction/Details/@auction.Id" class="btn btn-outline-primary mt-auto">Ətraflı Bax</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-end mt-3">
+            <a href="/Auction/Index" class="btn btn-link">🔨 Bütün Hərraclara Bax</a>
+        </div>
+    </div>
+
+    <!-- Latest Products -->
+    <div class="mb-5">
+        <h2 class="section-title">🪓 Son Əlavə Olunan Məhsullar</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            @foreach (var product in ViewBag.LatestProducts)
+            {
+                var image = (product.Images as IEnumerable<dynamic>)?.FirstOrDefault()?.ImageUrl ?? "/img/no-image.png";
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="@image" class="card-img-top rounded-top" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text text-muted">@product.Price ₼</p>
+                            <a href="/Sale/Details/@product.Id" class="btn btn-outline-success mt-auto">Ətraflı Bax</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-end mt-3">
+            <a href="/Sale/Index" class="btn btn-link">🪓 Bütün Məhsullara Bax</a>
+        </div>
+    </div>
+</div>

@@ -17,7 +17,21 @@ namespace LocatraMain.Areas.Admin.Controllers
             _context = context;
         }
 
-        // ✅ Təsdiqlənməmiş məhsullar
+
+        public async Task<IActionResult> Index()
+        {
+            var products = await _context.Products
+                .Include(p => p.CreatedBy)
+                .Include(p => p.Images)
+                .Where(p => p.Status != ProductStatus.Rejected)
+                .ToListAsync();
+
+            var grouped = products
+                .GroupBy(p => p.CreatedBy)
+                .ToList();
+
+            return View(grouped);
+        }
         public async Task<IActionResult> PendingProducts()
         {
             var pendingProducts = await _context.Products
@@ -28,7 +42,7 @@ namespace LocatraMain.Areas.Admin.Controllers
             return View(pendingProducts);
         }
 
-        // ✅ Təsdiqlə
+        
         public async Task<IActionResult> Approve(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -37,10 +51,10 @@ namespace LocatraMain.Areas.Admin.Controllers
             product.Status = ProductStatus.Active;
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("pendingProducts");
         }
 
-        // ✅ Rədd et
+
         public async Task<IActionResult> Reject(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -49,7 +63,7 @@ namespace LocatraMain.Areas.Admin.Controllers
             product.Status = ProductStatus.Rejected;
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("pendingProducts");
         }
     }
 }

@@ -1,0 +1,72 @@
+﻿@model LocatraMain.ViewModels.Sale.CheckoutViewModel
+@{
+    ViewData["Title"] = "Ödəniş";
+    var total = Model.CartItems.Sum(c => c.Product.Price * c.Quantity);
+}
+
+<div class="container my-5">
+    <h2 class="mb-4 text-center">💳 Ödəniş</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h5 class="mb-3">Səbətdəki Məhsullar</h5>
+
+            <div class="list-group">
+                @foreach (var item in Model.CartItems)
+                {
+                    <div class="list-group-item d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-2 shadow-sm rounded">
+                        <div>
+                            <strong>@item.Product.Name</strong><br />
+                            Say: @item.Quantity × @item.Product.Price ₼
+                        </div>
+                        <div class="fw-bold fs-5">@(@item.Product.Price* item.Quantity) ₼</div>
+                    </div>
+                }
+
+                <div class="list-group-item d-flex justify-content-between align-items-center bg-light mt-3 border-0">
+                    <strong>Ümumi:</strong>
+                    <strong class="fs-5">@total ₼</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h5 class="mb-3">Çatdırılma Məlumatları</h5>
+            <div class="mb-3">
+                <label for="address" class="form-label">Çatdırılma ünvanı</label>
+                <input id="address" name="address" class="form-control" placeholder="Ünvanınızı daxil edin..." required />
+            </div>
+
+            <button id="checkout-button" class="btn btn-success w-100 py-3 fs-5 d-flex justify-content-center align-items-center gap-2">
+                <i class="fa-solid fa-credit-card"></i> Ödəniş et
+            </button>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe("@ViewBag.PublishableKey");
+
+        document.getElementById("checkout-button").addEventListener("click", async () => {
+            const address = document.getElementById("address").value;
+            if (!address.trim()) {
+                alert("Zəhmət olmasa çatdırılma ünvanını daxil edin.");
+                return;
+            }
+
+            const response = await fetch("/Cart/CreateStripeSession", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ address })
+            });
+
+            const session = await response.json();
+            await stripe.redirectToCheckout({ sessionId: session.id });
+        });
+    </script>
+}

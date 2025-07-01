@@ -1,10 +1,11 @@
 ﻿using LocatraMain.DAL;
+using LocatraMain.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using LocatraMain.Models;
+using Stripe;
 
 namespace LocatraMain
 {
@@ -37,11 +38,11 @@ namespace LocatraMain
                 options.AccessDeniedPath = "/Account/AccessDenied";
             });
             builder.Services.AddTransient<IEmailSender, EmailSender>();
-
+            builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
             var app = builder.Build();
 
-
+            StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
             app.UseStaticFiles();
             app.MapControllerRoute(

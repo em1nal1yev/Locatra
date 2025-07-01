@@ -3,73 +3,127 @@
 
 @{
     ViewData["Title"] = Model.Name;
+    var isInWishlist = ViewBag.IsInWishlist as bool? ?? false;
 }
 
-<div class="row">
-    <div class="col-md-6">
-        <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @for (int i = 0; i < Model.Images.Count; i++)
-                {
-                    <div class="carousel-item @(i == 0 ? "active" : "")">
-                        <img src="@Model.Images.ElementAt(i).ImageUrl" class="d-block w-100" />
-                    </div>
-                }
+<div class="container my-5">
+    <div class="row">
+        <!-- Product Image Carousel -->
+        <div class="col-md-6 mb-4">
+            <div id="carouselImages" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner border rounded shadow-sm">
+                    @for (int i = 0; i < Model.Images.Count; i++)
+                    {
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <img src="@Model.Images.ElementAt(i).ImageUrl" class="d-block w-100" style="height: 400px; object-fit: contain;" />
+                        </div>
+                    }
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-6">
-        <h3>@Model.Name</h3>
-        <p>@Model.Description</p>
-        <p class="fw-bold">@Model.Price ₼</p>
-
-        <form asp-action="ToggleWishlist" method="post">
-            <input type="hidden" name="productId" value="@Model.Id" />
-            <button type="submit" class="btn btn-outline-danger">❤️ Wishliste əlavə et/sil</button>
-        </form>
-
-        <form asp-action="AddToCart" method="post" class="mt-2">
-            <input type="hidden" name="productId" value="@Model.Id" />
-            <div class="input-group">
-                <input type="number" name="quantity" value="1" class="form-control" min="1" />
-                <button type="submit" class="btn btn-success">Səbətə əlavə et</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<hr />
-
-<h4>Rəylər</h4>
-@if (Model.Reviews.Any())
+        <!-- Product Info + Actions -->
+        <div class="col-md-6 d-flex flex-column justify-content-between">
+            <div>
+                <h2 class="fw-bold">@Model.Name</h2>
+                <p class="text-muted">@Model.Description</p>
+                <p class="h4 fw-bold text-success">@Model.Price.ToString("0.00") ₼</p>
+                @if (Model.Reviews.Any())
 {
-    foreach (var review in Model.Reviews)
-    {
-        <div class="border rounded p-2 mb-2">
-            <strong>@review.User?.UserName</strong> - ⭐ @review.Rating
-            <p>@review.Comment</p>
-            <small class="text-muted">@review.CreatedAt.ToShortDateString()</small>
-        </div>
-    }
+    var avg = Model.Reviews.Average(r => r.Rating);
+    <div class="mt-2">
+        @for (int i = 1; i <= 5; i++)
+        {
+            if (i <= Math.Floor(avg))
+            {
+                <i class="fas fa-star text-warning"></i> <!-- dolu ulduz -->
+            }
+            else if (i - avg < 1 && i - avg > 0)
+            {
+                <i class="fas fa-star-half-alt text-warning"></i> <!-- yarım ulduz -->
+            }
+            else
+            {
+                <i class="far fa-star text-warning"></i> <!-- boş ulduz -->
+            }
+        }
+        <span class="ms-2 text-muted">(@avg.ToString("0.0"))</span>
+    </div>
 }
 else
 {
-    <p>Hələ rəy yoxdur.</p>
+    <div class="mt-2 text-muted">Heç bir rəy yoxdur</div>
 }
+            </div>
 
-@if (User.Identity.IsAuthenticated)
-{
-    <form asp-action="AddReview" method="post" class="mt-3">
-        <input type="hidden" name="ProductId" value="@Model.Id" />
-        <div class="mb-2">
-            <label>Reytinq (1-5)</label>
-            <input type="number" name="Rating" class="form-control" min="1" max="5" />
+            <div class="mt-4">
+                <!-- Wishlist toggle -->
+                <form asp-action="ToggleWishlist" method="post" class="mb-3">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <button type="submit" class="btn btn-outline-danger w-100">
+                        ❤️ @(isInWishlist ? "Wishlistdən sil" : "Wishliste əlavə et")
+                    </button>
+                </form>
+
+                <!-- Add to cart -->
+                <form asp-action="AddToCart" method="post">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+
+                    <div class="d-flex gap-2" style="max-width: 420px;">
+                        <div class="flex-grow-1 d-flex align-items-center">
+                            <label class="me-2 mb-0 fw-semibold">Say</label>
+                            <input type="number" name="quantity" value="1" min="1" class="form-control" style="max-width: 80px;" />
+                        </div>
+                        <button type="submit" class="btn btn-success flex-grow-1">🛒 Səbətə əlavə et</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="mb-2">
-            <label>Şərh</label>
-            <textarea name="Comment" class="form-control"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Rəy əlavə et</button>
-    </form>
-}
+    </div>
+
+    <hr class="my-5" />
+
+    <!-- Reviews -->
+    <h4 class="mb-4"><i class="bi bi-chat-left-text"></i> Rəylər</h4>
+
+    @if (Model.Reviews.Any())
+    {
+        foreach (var review in Model.Reviews)
+        {
+            <div class="border rounded p-3 mb-3 bg-light shadow-sm">
+                <strong>@review.User?.UserName</strong> — ⭐ @review.Rating
+                <p class="mb-1">@review.Comment</p>
+                <small class="text-muted">@review.CreatedAt.ToShortDateString()</small>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-info">Hələ rəy yoxdur.</div>
+    }
+
+    <!-- Add Review -->
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-action="AddReview" method="post" class="mt-4 border rounded p-4 shadow-sm bg-white">
+            <input type="hidden" name="ProductId" value="@Model.Id" />
+            <h5 class="mb-3"><i class="bi bi-pencil-square"></i> Rəy əlavə et</h5>
+
+            <div class="mb-3">
+                <label class="form-label">Reytinq (1-5)</label>
+                <input type="number" name="Rating" class="form-control" min="1" max="5" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Şərh</label>
+                <textarea name="Comment" class="form-control" rows="3" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Rəy əlavə et</button>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-warning mt-4">Rəy əlavə etmək üçün daxil olun.</div>
+    }
+</div>

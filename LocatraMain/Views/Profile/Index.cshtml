@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Profilim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = ViewBag.CurrentUser; // Ad və email üçün
+}
+
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">👤 @user?.Name</h2>
+        <p class="text-muted">@user?.Email</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+        <!-- Alınan Məhsullar -->
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    🛒 Alınan Məhsullar <span class="badge bg-light text-dark">@((ViewBag.Purchased as IEnumerable<dynamic>)?.Count() ?? 0)</span>
+                </div>
+                <div class="card-body">
+                    @foreach (var item in ViewBag.Purchased)
+                    {
+                        var image = (item.Images as IEnumerable<dynamic>)?.ToList().FirstOrDefault()?.ImageUrl ?? "/img/no-image.png";
+                        <div class="d-flex align-items-center border-bottom pb-2 mb-2">
+                            <img src="@image" width="60" height="60" class="rounded me-3" style="object-fit: cover;" />
+                            <div>
+                                <strong>@item.Name</strong><br />
+                                <small class="text-muted">@item.Quantity ədəd</small>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Yaratdığım Məhsullar -->
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    📦 Yaratdığım Məhsullar <span class="badge bg-light text-dark">@((ViewBag.MyProducts as IEnumerable<dynamic>)?.Count() ?? 0)</span>
+                </div>
+                <div class="card-body">
+                    @foreach (var product in ViewBag.MyProducts)
+                    {
+                        var image = (product.Images as IEnumerable<dynamic>)?.ToList().FirstOrDefault()?.ImageUrl ?? "/img/no-image.png";
+                        <div class="d-flex align-items-center border-bottom pb-2 mb-2">
+                            <img src="@image" width="60" height="60" class="rounded me-3" style="object-fit: cover;" />
+                            <div>
+                                <strong>@product.Name</strong><br />
+                                <small class="text-muted">@product.Price ₼</small>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Reylərim -->
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    📝 Rəylərim <span class="badge bg-dark text-white">@((ViewBag.MyReviews as IEnumerable<dynamic>)?.Count() ?? 0)</span>
+                </div>
+                <div class="card-body">
+                    @foreach (var r in ViewBag.MyReviews)
+                    {
+                        <div class="mb-3">
+                            <strong>@r.Product?.Name</strong> — ⭐ @r.Rating<br />
+                            <span class="text-muted">@r.Comment</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Yaratdığım Auksionlar -->
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    📣 Yaratdığım Auksionlar <span class="badge bg-light text-dark">@((ViewBag.MyAuctions as IEnumerable<dynamic>)?.Count() ?? 0)</span>
+                </div>
+                <div class="card-body">
+                    @foreach (var a in ViewBag.MyAuctions)
+                    {
+                        var image = (a.Images as IEnumerable<dynamic>)?.ToList().FirstOrDefault()?.ImageUrl ?? "/img/no-image.png";
+                        <div class="d-flex align-items-center border-bottom pb-2 mb-2">
+                            <img src="@image" width="60" height="60" class="rounded me-3" style="object-fit: cover;" />
+                            <div>
+                                <strong>@a.Title</strong><br />
+                                <small class="text-muted">@a.Status</small>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Auksion Təkliflərim -->
+        <div class="col">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white">
+                    💸 Auksion Təkliflərim <span class="badge bg-light text-dark">@((ViewBag.MyBids as IEnumerable<dynamic>)?.Count() ?? 0)</span>
+                </div>
+                <div class="card-body">
+                    @foreach (var bid in ViewBag.MyBids)
+                    {
+                        <div class="mb-3">
+                            <strong>@bid.Auction?.Title</strong> — @bid.Amount ₼
+                            <span class="text-muted">(@bid.BidTime.ToShortDateString())</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

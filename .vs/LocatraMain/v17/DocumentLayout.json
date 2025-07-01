@@ -3,28 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\views\\sale\\myproducts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\views\\sale\\myproducts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\views\\sale\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\views\\sale\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\controllers\\salecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\controllers\\salecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\models\\stripesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\models\\stripesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\views\\sale\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\views\\sale\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\viewmodels\\sale\\reviewcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\viewmodels\\sale\\reviewcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\viewmodels\\sale\\productcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\viewmodels\\sale\\productcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\controllers\\auctioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\controllers\\auctioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,90 +38,92 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SaleController.cs",
-              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\SaleController.cs",
-              "RelativeDocumentMoniker": "LocatraMain\\Controllers\\SaleController.cs",
-              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\SaleController.cs",
-              "RelativeToolTip": "LocatraMain\\Controllers\\SaleController.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAiwI4AAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T19:42:50.786Z",
-              "IsPinned": true,
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\appsettings.json",
+              "RelativeDocumentMoniker": "LocatraMain\\appsettings.json",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\appsettings.json",
+              "RelativeToolTip": "LocatraMain\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-07-01T20:56:41.053Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Sale\\Details.cshtml",
-              "RelativeDocumentMoniker": "LocatraMain\\Views\\Sale\\Details.cshtml",
-              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Sale\\Details.cshtml",
-              "RelativeToolTip": "LocatraMain\\Views\\Sale\\Details.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-26T09:03:18.104Z",
-              "EditorCaption": ""
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Program.cs",
+              "RelativeDocumentMoniker": "LocatraMain\\Program.cs",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Program.cs",
+              "RelativeToolTip": "LocatraMain\\Program.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAuwGQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T20:56:18.999Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MyProducts.cshtml",
-              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Sale\\MyProducts.cshtml",
-              "RelativeDocumentMoniker": "LocatraMain\\Views\\Sale\\MyProducts.cshtml",
-              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Sale\\MyProducts.cshtml",
-              "RelativeToolTip": "LocatraMain\\Views\\Sale\\MyProducts.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-26T09:03:00.127Z",
-              "EditorCaption": ""
+              "DocumentIndex": 2,
+              "Title": "StripeSettings.cs",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Models\\StripeSettings.cs",
+              "RelativeDocumentMoniker": "LocatraMain\\Models\\StripeSettings.cs",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Models\\StripeSettings.cs",
+              "RelativeToolTip": "LocatraMain\\Models\\StripeSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T20:55:45.258Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Sale\\Create.cshtml",
-              "RelativeDocumentMoniker": "LocatraMain\\Views\\Sale\\Create.cshtml",
-              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Sale\\Create.cshtml",
-              "RelativeToolTip": "LocatraMain\\Views\\Sale\\Create.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-26T09:02:34.398Z",
-              "EditorCaption": ""
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "LocatraMain\\Models\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "LocatraMain\\Models\\ApplicationUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T20:55:14.703Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ReviewCreateViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\ViewModels\\Sale\\ReviewCreateViewModel.cs",
-              "RelativeDocumentMoniker": "LocatraMain\\ViewModels\\Sale\\ReviewCreateViewModel.cs",
-              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\ViewModels\\Sale\\ReviewCreateViewModel.cs",
-              "RelativeToolTip": "LocatraMain\\ViewModels\\Sale\\ReviewCreateViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "LocatraMain\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\CartController.cs",
+              "RelativeToolTip": "LocatraMain\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAqwJAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T09:01:51.024Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-01T20:54:47.151Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuctionController.cs",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\AuctionController.cs",
+              "RelativeDocumentMoniker": "LocatraMain\\Controllers\\AuctionController.cs",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\AuctionController.cs",
+              "RelativeToolTip": "LocatraMain\\Controllers\\AuctionController.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAuwKYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-01T20:44:09.576Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ProductCreateViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\ViewModels\\Sale\\ProductCreateViewModel.cs",
-              "RelativeDocumentMoniker": "LocatraMain\\ViewModels\\Sale\\ProductCreateViewModel.cs",
-              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\ViewModels\\Sale\\ProductCreateViewModel.cs",
-              "RelativeToolTip": "LocatraMain\\ViewModels\\Sale\\ProductCreateViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "LocatraMain\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "LocatraMain\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAA8wBUAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T09:01:29.358Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+              "WhenOpened": "2025-07-01T20:40:24.323Z"
             }
           ]
         }

@@ -1,46 +1,86 @@
 ﻿@model LocatraMain.ViewModels.Sale.ProductCreateViewModel
+@using LocatraMain.Models.Sale
 
 @{
     ViewData["Title"] = "Yeni Məhsul Yarat";
+    var existingProducts = ViewBag.MyProducts as List<Product>;
 }
 
-<h2 class="mb-4">Yeni Məhsul Yarat</h2>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">🛒 Yeni Məhsul Yarat</h2>
+        <a asp-action="MyProducts" class="btn btn-outline-primary">Hamısına Bax</a>
+    </div>
 
-@if (ViewBag.Error != null)
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Name" class="form-label">Ad</label>
+                <input asp-for="Name" class="form-control" placeholder="Məhsul adı" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label asp-for="Price" class="form-label">Qiymət</label>
+                <input asp-for="Price" type="number" step="0.01" class="form-control" placeholder="₼" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Açıqlama</label>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Məhsul haqqında məlumat..."></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+<div class="mb-3">
+    <label asp-for="Images" class="form-label">📷 Şəkillər</label>
+    <div class="input-group">
+        <label class="input-group-text" for="customFile">Yüklə</label>
+        <input asp-for="Images" type="file" multiple class="form-control" id="customFile" />
+    </div>
+    <span asp-validation-for="Images" class="text-danger"></span>
+</div>
+
+        <button type="submit" class="btn btn-success">📤 Göndər</button>
+    </form>
+
+    @if (existingProducts != null && existingProducts.Any())
 {
-    <div class="alert alert-danger">@ViewBag.Error</div>
+    <hr class="my-4" />
+    <h5 class="mb-3">💡 Hal-hazırda olan məhsullarınızdan bəziləri:</h5>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var product in existingProducts.Take(3)) // Yalnız ilk 3
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="@product.Images.FirstOrDefault()?.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 180px; object-fit: cover;" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title mb-1">@product.Name</h5>
+                        <p class="card-text text-muted mb-2" style="font-size: 0.9rem;">@product.Price ₼</p>
+                        <span class="badge bg-@(product.Status == ProductStatus.Active ? "success" : product.Status == ProductStatus.Pending ? "warning text-dark" : "danger")">
+                            @product.Status
+                        </span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="mt-4 text-end">
+        <a asp-action="MyProducts" class="btn btn-outline-primary">👀 Bütün Məhsullara Bax</a>
+    </div>
 }
 
-<form asp-action="Create" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Description" class="form-label"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Price" class="form-label"></label>
-        <input asp-for="Price" type="number" step="0.01" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="Images" class="form-label">Şəkillər</label>
-        <input asp-for="Images" type="file" multiple class="form-control" />
-        <span asp-validation-for="Images" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Göndər</button>
-</form>
+</div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <partial name="_ValidationScriptsPartial" />
 }
+

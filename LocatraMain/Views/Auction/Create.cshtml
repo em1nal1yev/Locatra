@@ -2,60 +2,78 @@
 @model AuctionCreateVm
 
 @{
-    ViewData["Title"] = "Yeni Auksion";
+    ViewData["Title"] = "Yeni Hərrac";
 }
 
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow rounded">
-                <div class="card-header bg-primary text-white text-center">
-                    <h4 class="mb-0">Yeni Auksion Yarat</h4>
+        <div class="col-md-10 col-lg-8">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-header bg-success text-white text-center rounded-top-4">
+                    <h4 class="mb-0" style="font-weight: 600;"> Yeni Hərrac Yarat</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body bg-light p-4">
                     <form asp-action="Create" enctype="multipart/form-data" method="post">
                         <div class="mb-3">
-                            <label asp-for="Title" class="form-label"></label>
-                            <input asp-for="Title" class="form-control" />
-                            <span asp-validation-for="Title" class="text-danger"></span>
+                            <label asp-for="Title" class="form-label fw-semibold">Başlıq</label>
+                            <input asp-for="Title" class="form-control" placeholder="Hərracın adını daxil edin" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="Description" class="form-label"></label>
-                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
-                            <span asp-validation-for="Description" class="text-danger"></span>
+                            <label asp-for="Description" class="form-label fw-semibold">Təsvir</label>
+                            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Məhsul haqqında ətraflı məlumat"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label asp-for="StartingPrice" class="form-label"></label>
-                            <input asp-for="StartingPrice" class="form-control" />
-                            <span asp-validation-for="StartingPrice" class="text-danger"></span>
+                            <label asp-for="StartingPrice" class="form-label fw-semibold">Başlanğıc Qiymət (₼)</label>
+                            <input asp-for="StartingPrice" class="form-control" placeholder="Məsələn: 25.00" />
+                            <span asp-validation-for="StartingPrice" class="text-danger small"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="StartTime" class="form-label"></label>
-                            <input asp-for="StartTime" type="datetime-local" class="form-control" />
-                            <span asp-validation-for="StartTime" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="StartTime" class="form-label fw-semibold">Başlama Tarixi</label>
+                                <input asp-for="StartTime" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="StartTime" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="EndTime" class="form-label fw-semibold">Bitmə Tarixi</label>
+                                <input asp-for="EndTime" type="datetime-local" class="form-control" />
+                                <span asp-validation-for="EndTime" class="text-danger small"></span>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label asp-for="EndTime" class="form-label"></label>
-                            <input asp-for="EndTime" type="datetime-local" class="form-control" />
-                            <span asp-validation-for="EndTime" class="text-danger"></span>
-                        </div>
-
-                        <div class="mb-3">
-                            <label asp-for="Images" class="form-label"></label>
+                        <div class="mb-4">
+                            <label asp-for="Images" class="form-label fw-semibold">Şəkillər</label>
                             <input asp-for="Images" type="file" multiple class="form-control" />
-                            <span asp-validation-for="Images" class="text-danger"></span>
+                            <small class="text-muted">Birdən çox şəkil seçə bilərsiniz</small>
+                            <span asp-validation-for="Images" class="text-danger small"></span>
                         </div>
 
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-success px-5">Yarat</button>
-                        </div>
+                        <button type="submit" class="btn btn-success px-4 py-3 rounded-3 fw-semibold w-100">
+                            Hərracı Yarat
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    body {
+        background-color: #fefaf3;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .form-label {
+        color: #333;
+    }
+
+    .form-control::placeholder {
+        color: #aaa;
+    }
+</style>

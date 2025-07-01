@@ -1,0 +1,40 @@
+﻿@model List<LocatraMain.Models.Sale.CartItem>
+@{
+    ViewData["Title"] = "Səbətim";
+    var total = Model.Sum(c => c.Product.Price * c.Quantity);
+}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4"><i class="fa fa-shopping-cart"></i> Səbətim</h2>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="@(item.Product.Images.FirstOrDefault()?.ImageUrl ?? "/img/no-image.png")"
+                         class="card-img-top" style="height: 200px; object-fit: cover;" />
+
+
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@item.Product.Name</h5>
+                        <p class="card-text">Qiymət: <strong>@item.Product.Price ₼</strong></p>
+                        <p class="card-text">Say: <strong>@item.Quantity</strong></p>
+                        <p class="card-text">Cəmi: <strong>@(item.Product.Price* item.Quantity) ₼</strong></p>
+
+                        <form asp-action="Remove" method="post" class="mt-auto">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-danger w-100">Sil</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="text-end mt-4">
+        <h4>Ümumi məbləğ: <strong>@total ₼</strong></h4>
+        <a href="/Cart/Checkout" class="btn btn-primary btn-lg mt-2">Ödəniş Et</a>
+    </div>
+</div>

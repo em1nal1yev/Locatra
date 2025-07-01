@@ -4,6 +4,35 @@
 @{
     ViewData["Title"] = "Mənim Məhsullarım";
 }
+
+@if (TempData["Message"] != null)
+{
+    <div id="product-message-box"
+         style="
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: white;
+                border: 1px solid #dee2e6;
+                border-radius: 10px;
+                box-shadow: 0 0 15px rgba(0,0,0,0.1);
+                padding: 30px;
+                z-index: 1055;
+                text-align: center;
+                max-width: 400px;
+                width: 90%;
+            ">
+        <div style="font-size: 2rem; color: green; margin-bottom: 15px;">
+            <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <p style="font-weight: 500; margin-bottom: 20px;">@TempData["Message"]</p>
+        <button class="btn btn-primary" onclick="document.getElementById('product-message-box').remove()">OK</button>
+    </div>
+}
+
+
+
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">Mənim Məhsullarım</h2>
@@ -11,7 +40,7 @@
             <a asp-action="Index" class="btn btn-outline-primary me-2">
                 🔙 Satış səhifəsinə qayıt
             </a>
-            <a href="javascript:history.back()" class="btn btn-outline-secondary">
+            <a asp-action="Create" asp-controller="Sale" >
                 ⬅️ Geri qayıt
             </a>
         </div>

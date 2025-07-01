@@ -60,7 +60,6 @@ C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\Microsoft.V
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\NuGet.Common.dll
@@ -80,14 +79,11 @@ C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Comp
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Composition.Runtime.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
-C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Security.Permissions.dll
-C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\af\Humanizer.resources.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\ar\Humanizer.resources.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\az\Humanizer.resources.dll
@@ -233,11 +229,7 @@ C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\runtimes\wi
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\obj\Debug\net8.0\LocatraMain.csproj.AssemblyReference.cache
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\obj\Debug\net8.0\LocatraMain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\obj\Debug\net8.0\LocatraMain.AssemblyInfoInputs.cache
@@ -259,3 +251,5 @@ C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\obj\Debug\net8.0\ref\Locatra
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\LocatraMain.staticwebassets.runtime.json
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\obj\Debug\net8.0\LocatraMain.RazorAssemblyInfo.cache
 C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\obj\Debug\net8.0\LocatraMain.RazorAssemblyInfo.cs
+C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\obj\Debug\net8.0\LocatraMain.sourcelink.json
+C:\Users\Emin\Desktop\Final\LocatraMain\LocatraMain\bin\Debug\net8.0\Stripe.net.dll

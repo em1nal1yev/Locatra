@@ -1,0 +1,46 @@
+﻿@using LocatraMain.Models.Sale
+@model List<IGrouping<LocatraMain.Models.ApplicationUser, LocatraMain.Models.Sale.Product>>
+
+@{
+    ViewData["Title"] = "İstifadəçilər və Məhsulları";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">👤 İstifadəçilər və Onların Məhsulları</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">Məhsul əlavə edən istifadəçi yoxdur.</div>
+    }
+    else
+    {
+        foreach (var group in Model)
+        {
+            var user = group.Key;
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-light fw-semibold">
+                    👤 @user.UserName (@user.Email)
+                </div>
+                <div class="card-body">
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        @foreach (var product in group)
+                        {
+                            <div class="col">
+                                <div class="card h-100">
+                                    <img src="@product.Images.FirstOrDefault()?.ImageUrl" class="card-img-top" style="height: 180px; object-fit: cover;" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">@product.Name</h5>
+                                        <p class="card-text text-muted">@product.Price ₼</p>
+                                        <span class="badge bg-@(product.Status == ProductStatus.Active ? "success" : "warning text-dark")">
+                                            @product.Status
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

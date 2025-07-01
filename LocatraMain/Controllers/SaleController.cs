@@ -25,22 +25,38 @@ namespace LocatraMain.Controllers
 
 
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
-            var products = await _context.Products
+            var query = _context.Products
+                .Include(p => p.Reviews)
                 .Include(p => p.Images)
-                .Where(p => p.Status == ProductStatus.Active)
-                .ToListAsync();
+                .Where(p => p.Status == ProductStatus.Active);
 
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(p => p.Name.Contains(search));
+            }
+
+            var products = await query.ToListAsync();
             return View(products);
         }
 
-        public IActionResult Create()
+
+        public async Task<IActionResult> Create()
         {
+            var user = await _userManager.GetUserAsync(User);
+            var products = await _context.Products
+                .Include(p => p.Images)
+                .Where(p => p.CreatedById == user.Id && p.Status == ProductStatus.Active)
+                .ToListAsync();
+
+            ViewBag.MyProducts = products;
+
             if (TempData["Error"] != null)
             {
                 ViewBag.Error = TempData["Error"];
             }
+
             return View();
         }
 
@@ -145,14 +161,22 @@ namespace LocatraMain.Controllers
             var product = await _context.Products
                 .Include(p => p.Images)
                 .Include(p => p.Reviews)
-                    .ThenInclude(r => r.User)
-                .FirstOrDefaultAsync(p => p.Id == id && p.Status == ProductStatus.Active);
+                .ThenInclude(r => r.User)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
-            if (product == null) return NotFound();
+            if (product == null)
+                return NotFound();
+
+            var userId = _userManager.GetUserId(User);
+            var isInWishlist = _context.WishlistItems
+                .Any(w => w.ProductId == id && w.UserId == userId);
+
+            ViewBag.IsInWishlist = isInWishlist;
+
             return View(product);
         }
 
-        // ✅ Rəy əlavə et
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddReview(ReviewCreateViewModel vm)
@@ -176,7 +200,8 @@ namespace LocatraMain.Controllers
             return RedirectToAction("Details", new { id = vm.ProductId });
         }
 
-        // ✅ Wishlist əlavə/sil
+        
+        
         [HttpPost]
         public async Task<IActionResult> ToggleWishlist(int productId)
         {
@@ -198,10 +223,25 @@ namespace LocatraMain.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return Ok();
+
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
-        // ✅ Səbətə əlavə et
+        public async Task<IActionResult> MyWishlist()
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            var wishlistItems = await _context.WishlistItems
+                .Where(w => w.UserId == user.Id)
+                .Include(w => w.Product)
+                .ThenInclude(p => p.Images)
+                .ToListAsync();
+
+            return View(wishlistItems);
+        }
+
+
+
         [HttpPost]
         public async Task<IActionResult> AddToCart(int productId, int quantity)
         {
@@ -224,7 +264,7 @@ namespace LocatraMain.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return Ok();
+            return RedirectToAction("Index","Cart");
         }
     }
 }

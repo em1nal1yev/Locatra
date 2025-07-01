@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Ödəniş Uğurludur";
+}
+
+<div class="container text-center my-5">
+    <img src="~/img/success.png" alt="Success" style="max-width: 150px;" class="mb-4" />
+    <h2 class="text-success mb-3">✅ Ödəniş uğurla tamamlandı!</h2>
+    <p class="lead mb-4">Təşəkkür edirik! Sifarişiniz qəbul edildi və yaxın zamanda çatdırılacaq.</p>
+
+    <a href="@Url.Action("Index", "Sale")" class="btn btn-lg btn-primary px-4 py-3 fw-bold" style="font-size: 1.2rem;">
+        🛒 Yeni məhsullara bax
+    </a>
+</div>
