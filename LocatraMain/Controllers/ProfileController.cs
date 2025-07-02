@@ -52,6 +52,19 @@ namespace LocatraMain.Controllers
                 .Where(c => c.UserId == user.Id)
                 .ToListAsync();
 
+            var endedAuctions = await _context.Auctions
+                .Include(a => a.Images)
+                .Include(a => a.Bids)
+                .Where(a => a.EndTime <= DateTime.Now )
+                .ToListAsync();
+
+            var wonAuctions = endedAuctions
+                .Where(a => a.Bids.Any() &&
+                    a.Bids.OrderByDescending(b => b.BidTime).FirstOrDefault()?.UserId == user.Id 
+                    )
+                .ToList();
+
+            ViewBag.WonAuctions = wonAuctions;
             ViewBag.MyProducts = myProducts;
             ViewBag.MyReviews = myReviews;
             ViewBag.MyAuctions = myAuctions;

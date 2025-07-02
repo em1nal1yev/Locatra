@@ -40,6 +40,7 @@ namespace LocatraMain.Models.Auction
         public string? WinnerId { get; set; }
         public ApplicationUser? Winner { get; set; }
 
+        public bool IsPaid { get; set; } = false;
         public ICollection<Bid> Bids { get; set; }
         public ICollection<AuctionImage> Images { get; set; }
     }

@@ -1,0 +1,26 @@
+﻿@using LocatraMain.ViewModels
+@model AuctionPaymentViewModel
+
+@{
+    ViewData["Title"] = "Ödəniş Et";
+}
+
+<div class="container my-5">
+    <h2 class="mb-4">💳 @Model.Title üçün Ödəniş</h2>
+
+    <form asp-action="Payment" method="post">
+        <input type="hidden" asp-for="AuctionId" />
+        <input type="hidden" asp-for="Title" />
+        <input type="hidden" asp-for="Amount" />
+
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <p><strong>Məbləğ: @Model.Amount ₼</strong></p>
+
+        <button type="submit" class="btn btn-primary">Stripe ilə Ödə</button>
+    </form>
+</div>
