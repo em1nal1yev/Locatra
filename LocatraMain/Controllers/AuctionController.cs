@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
 using Stripe.Checkout;
+using System.Net;
 
 namespace LocatraMain.Controllers
 {
@@ -69,20 +70,31 @@ namespace LocatraMain.Controllers
             return View(auctions);
         }
 
-        // CREATE GET
+        
         public IActionResult Create()
         {
             return View();
         }
 
-        // CREATE POST
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(AuctionCreateVm vm)
         {
+
             if (!ModelState.IsValid)
                 return View(vm);
+            if (vm.StartTime < DateTime.Now)
+            {
+                ModelState.AddModelError("StartTime", "Başlama vaxtı indiki vaxtdan əvvəl ola bilməz.");
+                return View(vm);
+            }
 
+            if (vm.EndTime <= vm.StartTime)
+            {
+                ModelState.AddModelError("EndTime", "Bitmə vaxtı başlama vaxtından sonra olmalıdır.");
+                return View(vm);
+            }
             var user = await _userManager.GetUserAsync(User);
 
             var auction = new Auction
@@ -98,7 +110,7 @@ namespace LocatraMain.Controllers
                 Images = new List<AuctionImage>()
             };
 
-            // Şəkillərin saxlanması
+            
             var wwwRootPath = Path.Combine(_env.WebRootPath, "uploads");
             if (!Directory.Exists(wwwRootPath))
                 Directory.CreateDirectory(wwwRootPath);
@@ -122,7 +134,7 @@ namespace LocatraMain.Controllers
             _context.Auctions.Add(auction);
             await _context.SaveChangesAsync();
 
-            // TODO: Add notification to admin (can be via SignalR, DB flag, or dashboard view)
+            
             TempData["Message"] = "Auksion yaradıldı. Admin təsdiqlədikdən sonra aktiv olacaq.";
 
             return RedirectToAction(nameof(Index));
@@ -151,9 +163,12 @@ namespace LocatraMain.Controllers
                 return BadRequest("Vaxtı bitmişdir.");
 
             if (auction.CurrentPrice.HasValue && amount <= auction.CurrentPrice)
-                return BadRequest("Yeni təklif mövcud qiymətdən yüksək olmalıdır.");
+            {
+                TempData["BidError"] = "❗ Təklif mövcud qiymətdən yüksək olmalıdır.";
+                return RedirectToAction("Details", new { id });
+            }
 
-            // Yeni təklifi əlavə et
+            
             var bid = new Bid
             {
                 AuctionId = id,
@@ -162,7 +177,7 @@ namespace LocatraMain.Controllers
                 UserId = user.Id
             };
 
-            // Mövcud qiyməti və qalibi yenilə
+            
             auction.CurrentPrice = amount;
             auction.WinnerId = user.Id;
 
@@ -185,7 +200,7 @@ namespace LocatraMain.Controllers
             if (auction == null)
                 return NotFound();
 
-            // Digər aktiv auksionlar (hal-hazırkıdan fərqli olanlar)
+            
             var otherAuctions = await _context.Auctions
                 .Include(a => a.Images)
                 .Where(a => a.Status == AuctionStatus.Active && a.Id != id && DateTime.Now < a.EndTime)
@@ -210,7 +225,7 @@ namespace LocatraMain.Controllers
 
             var lastBid = auction.Bids.OrderByDescending(b => b.BidTime).FirstOrDefault();
             if (lastBid == null || lastBid.UserId != _userManager.GetUserId(User))
-                return Forbid(); // başqasının auctionunu ödəyə bilməz
+                return Forbid(); 
 
             var vm = new AuctionPaymentViewModel
             {
@@ -236,8 +251,9 @@ namespace LocatraMain.Controllers
             if (lastBid == null || lastBid.UserId != _userManager.GetUserId(User))
                 return Forbid();
 
-            // Stripe PaymentSession yarad
-            var domain = "https://localhost:7176"; // frontend domenin
+            TempData["Address"] = model.Address;
+
+            var domain = "https://localhost:7176"; 
             var options = new SessionCreateOptions
             {
                 LineItems = new List<SessionLineItemOptions>
@@ -277,6 +293,21 @@ namespace LocatraMain.Controllers
                 auction.IsPaid = true; 
                 await _context.SaveChangesAsync();
                 TempData["PaymentSuccess"] = "Ödəniş uğurla tamamlandı.";
+            }
+            var seller = await _context.Users.FirstOrDefaultAsync(u => u.Id == auction.CreatedById);
+            var address = TempData["Address"]?.ToString() ?? "Adres mövcud deyil";
+            if (seller != null)
+            {
+                string subject = "📦 Auksion məhsulunuz satıldı!";
+                string message = $@"
+        <p>Salam <strong>{seller.Name}</strong>,</p>
+        <p><strong>{auction.Title}</strong> adlı məhsulunuz auksionda satıldı.</p>
+        <p>📬 Zəhmət olmasa məhsulu qalib şəxsə çatdırılmasını təmin edin.</p>
+        <p>Alıcının qeyd etdiyi ünvan: <strong>{address}</strong></p>
+        <br/>
+        <p>Locatra komandası tərəfindən təşəkkürlər!</p>";
+
+                await _emailSender.SendEmailAsync(seller.Email, subject, message);
             }
 
 

@@ -4,6 +4,7 @@ using LocatraMain.Models.Sale;
 using LocatraMain.ViewModels.Sale;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
@@ -17,12 +18,13 @@ namespace LocatraMain.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
-
-        public CartController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IConfiguration configuration)
+        private readonly IEmailSender _emailSender;  
+        public CartController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IConfiguration configuration, IEmailSender emailSender)
         {
             _context = context;
             _userManager = userManager;
             _configuration = configuration;
+            _emailSender = emailSender;
         }
 
         
@@ -125,8 +127,21 @@ namespace LocatraMain.Controllers
             foreach (var item in cartItems)
             {
                 var seller = item.Product.CreatedBy;
-                Console.WriteLine($"🔔 Bildiriş: '{item.Product.Name}' adlı məhsul {user.Name} {user.Surname} tərəfindən satın alındı. Ünvan: {address}");
+                if (seller != null)
+                {
+                    string subject = "📦 Məhsulunuz satıldı!";
+                    string message = $@"
+            <p>Salam <strong>{seller.Name}</strong>,</p>
+            <p><strong>{item.Product.Name}</strong> adlı məhsulunuz uğurla satıldı.</p>
+            <p>Alıcının qeyd etdiyi ünvan: <strong>{address}</strong></p>
+            <p>📬 Zəhmət olmasa məhsulu bu ünvana göndərin.</p>
+            <br/>
+            <p>Locatra komandası tərəfindən təşəkkürlər!</p>";
+
+                    await _emailSender.SendEmailAsync(seller.Email, subject, message);
+                }
             }
+
 
             _context.CartItems.RemoveRange(cartItems);
             await _context.SaveChangesAsync();

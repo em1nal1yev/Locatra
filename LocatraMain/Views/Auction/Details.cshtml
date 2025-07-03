@@ -25,11 +25,18 @@
                 <!-- Details -->
                 <div class="col-md-6">
                     <div class="p-3">
+
                         <p><span class="fw-bold text-secondary">📃 Açıqlama:</span> @Model.Description</p>
                         <p><span class="fw-bold text-success">💰 Başlanğıc Qiymət:</span> <span class="badge bg-success">@Model.StartingPrice ₼</span></p>
                         <p><span class="fw-bold text-warning">💸 Cari Təklif:</span> <span class="badge bg-warning text-dark">@Model.CurrentPrice ₼</span></p>
                         <p><span class="fw-bold text-danger">⏰ Bitmə Vaxtı:</span> <span class="badge bg-danger">@Model.EndTime.ToString("dd.MM.yyyy HH:mm")</span></p>
 
+                        @if (TempData["BidError"] != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @TempData["BidError"]
+                            </div>
+                        }
                         @if (User.Identity.IsAuthenticated)
                         {
                             <form asp-action="Bid" asp-controller="Auction" method="post" class="mt-3">

@@ -1,0 +1,53 @@
+﻿@model List<IGrouping<LocatraMain.Models.ApplicationUser, LocatraMain.Models.Auction.Auction>>
+
+@{
+    ViewData["Title"] = "İstifadəçilər və Onların Hərracları";
+}
+
+<div class="container mt-4">
+    <h3 class="mb-4"><i class="bi bi-people-fill me-2"></i>İstifadəçilər və Onların Hərracları</h3>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning">Heç bir hərrac tapılmadı.</div>
+    }
+    else
+    {
+        foreach (var group in Model)
+        {
+            <div class="mb-5">
+                <div class="mb-2 d-flex align-items-center">
+                    <i class="bi bi-person-circle me-2 fs-4 text-dark"></i>
+                    <span class="fw-semibold fs-5">@group.Key.Name @group.Key.Surname</span>
+                    <span class="ms-2 text-muted">(@group.Key.Email)</span>
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    @foreach (var auction in group)
+                    {
+                        <div class="col">
+                            <div class="card shadow-sm h-100">
+                                <img src="@(auction.Images.FirstOrDefault()?.ImageUrl ?? "/uploads/no-image.png")"
+                                     class="card-img-top"
+                                     alt="Auction Image"
+                                     style="height: 200px; object-fit: cover;" />
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title text-truncate">@auction.Title</h5>
+                                    <p class="card-text">@auction.StartingPrice.ToString("0.00") ₼ start qiymət</p>
+
+                                    <span class="mt-auto badge
+                                                    @(auction.Status == LocatraMain.Models.Auction.AuctionStatus.Pending ? "bg-warning text-dark" :
+                                                                                    auction.Status == LocatraMain.Models.Auction.AuctionStatus.Active ? "bg-success" :
+                                                                                    auction.Status == LocatraMain.Models.Auction.AuctionStatus.Ended ? "bg-secondary" : "bg-danger")">
+                            @auction.Status.ToString()
+                        </span>
+                    </div>
+                </div>
+            </div>
+                        }
+                </div>
+            </div>
+        }
+    }
+</div>

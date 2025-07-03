@@ -18,7 +18,17 @@ namespace LocatraMain.Areas.Admin.Controllers
             _context = context;
         }
 
-        // SHOW PENDING AUCTIONS
+        public async Task<IActionResult> Index()
+        {
+            var auctions = await _context.Auctions
+                .Include(a => a.CreatedBy)
+                .Include(a => a.Images)
+                .ToListAsync();
+
+            var grouped = auctions.GroupBy(a => a.CreatedBy).ToList();
+            return View(grouped);
+        }
+
         public async Task<IActionResult> PendingAuctions()
         {
             var pending = await _context.Auctions

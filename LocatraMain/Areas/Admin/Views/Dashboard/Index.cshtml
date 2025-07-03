@@ -1,4 +1,28 @@
-﻿<div class="container">
-	<br />
-<h2>Admin Panelə Xoş Gəlmisiniz</h2>
+﻿@model List<LocatraMain.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Əsas Səhifə";
+}
+
+<div class="container mt-4">
+    <h3><i class="bi bi-person-bounding-box me-2"></i>Locatra istifadəçiləri</h3>
+
+    <table class="table table-bordered mt-4">
+        <thead class="table-light">
+            <tr>
+                <th>Ad Soyad</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                var isActive = user.EmailConfirmed && !user.LockoutEnabled;
+                <tr>
+                    <td>@user.Name @user.Surname</td>
+                    <td>@user.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using LocatraMain.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LocatraMain.Areas.Admin.Controllers
@@ -7,9 +9,17 @@ namespace LocatraMain.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public DashboardController(UserManager<ApplicationUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var users = _userManager.Users.ToList();
+            return View(users);
         }
     }
 }

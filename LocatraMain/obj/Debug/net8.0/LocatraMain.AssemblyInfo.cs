@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LocatraMain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+96b9b4e69eb20efe6a4e1b72558cd975a3d79e7b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+02a9d90bf6b5101a73bf6f5d4331f68e77a65e2f")]
 [assembly: System.Reflection.AssemblyProductAttribute("LocatraMain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LocatraMain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -25,10 +25,6 @@
             </div>
         </div>
 
-
-
-
-
         @if (!Model.Any())
         {
             <div class="alert alert-warning text-center">Axtarışa uyğun məhsul tapılmadı.</div>
@@ -36,6 +32,22 @@
         else
         {
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5">
+
+                <!-- Öz məhsulunu əlavə et kartı -->
+                <div class="col d-flex justify-content-center">
+                    <div class="card product-card shadow d-flex align-items-center justify-content-center flex-column text-center"
+                         style="width: 320px; height: 100%; border-radius: 20px; border: 2px dashed #bbb;">
+                        <div class="p-4">
+                            <a href="@Url.Action("Create", "Sale")" class="text-decoration-none">
+                                <div style="font-size: 50px; color: #198754;">+</div>
+                                <h5 class="mt-2 text-success">Məhsul əlavə et</h5>
+                                <p class="text-muted small">Öz məhsulunuzu satışa çıxarın</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digər məhsullar -->
                 @foreach (var product in Model)
                 {
                     var averageRating = product.Reviews?.Any() == true
@@ -112,6 +124,7 @@
         border: 1px solid #e7d6b5;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         font-family: 'Georgia', serif;
+        margin-bottom: 30px;
     }
 
         .product-card:hover {
