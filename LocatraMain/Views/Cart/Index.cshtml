@@ -22,6 +22,19 @@
                         <p class="card-text">Qiymət: <strong>@item.Product.Price ₼</strong></p>
                         <p class="card-text">Say: <strong>@item.Quantity</strong></p>
                         <p class="card-text">Cəmi: <strong>@(item.Product.Price* item.Quantity) ₼</strong></p>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <form asp-action="DecreaseQuantity" method="post" class="me-1">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">-</button>
+                            </form>
+
+                            <span><strong>@item.Quantity</strong></span>
+
+                            <form asp-action="IncreaseQuantity" method="post" class="ms-1">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">+</button>
+                            </form>
+                        </div>
 
                         <form asp-action="Remove" method="post" class="mt-auto">
                             <input type="hidden" name="id" value="@item.Id" />

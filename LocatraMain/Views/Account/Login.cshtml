@@ -1,23 +1,47 @@
 ﻿@using LocatraMain.ViewModels
 @model LoginVm
 
-<div class="container mt-5">
-    <form method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+@{
+    ViewData["Title"] = "Daxil ol";
+}
+
+<div class="container mt-5" style="max-width: 500px;">
+    <div class="text-center mb-4">
+        <h3 class="mt-2">Locatra - Giriş</h3>
+        <p class="text-muted">Zəhmət olmasa giriş məlumatlarınızı daxil edin.</p>
+    </div>
+
+    <form method="post" class="border p-4 rounded shadow-sm bg-white">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+        }
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input asp-for="Email" class="form-control" placeholder="example@gmail.com" />
+            <span asp-validation-for="Email" class="text-danger small"></span>
         </div>
 
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input asp-for="Password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <div class="mb-3">
+            <label class="form-label">Şifrə</label>
+            <input asp-for="Password" class="form-control" type="password" placeholder="Şifrənizi daxil edin" />
+            <span asp-validation-for="Password" class="text-danger small"></span>
         </div>
 
-        <div class="form-group d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center mb-3">
             <button type="submit" class="btn btn-primary">Daxil ol</button>
-            <a asp-action="ForgotPassword" asp-controller="Account" class="text-danger ml-2" style="font-size: 0.9rem;">Şifrəni unutmusunuz?</a>
+            <a asp-action="ForgotPassword" asp-controller="Account" class="text-danger small text-decoration-none">Şifrəni unutmusunuz?</a>
+        </div>
+
+        <div class="text-center mt-3">
+            <a asp-controller="Account" asp-action="Register" class="text-primary fw-semibold small text-decoration-none">
+                Hesabınız yoxdur? Qeydiyyatdan keç
+            </a>
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -31,14 +31,19 @@ namespace LocatraMain.Controllers
             {
                 return View(appUserVm);
             }
+            var existingUser = await _userManager.FindByEmailAsync(appUserVm.Email);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("Email", "Bu email artıq qeydiyyatdan keçib.");
+                return View(appUserVm);
+            }
 
-            // 6 rəqəmli təsdiq kodu
             var code = new Random().Next(100000, 999999).ToString();
 
-            // Email göndər
+            
             await _emailSender.SendEmailAsync(appUserVm.Email, "Təsdiqləmə Kodu", $"Kodunuz: <strong>{code}</strong>");
 
-            // Məlumatları müvəqqəti saxla
+            
             TempData["Code"] = code;
             TempData["User"] = System.Text.Json.JsonSerializer.Serialize(appUserVm);
 
@@ -145,10 +150,10 @@ namespace LocatraMain.Controllers
                 return View(model);
             }
 
-            // ✅ OTP kodu yaradılır
+            
             string code = new Random().Next(100000, 999999).ToString();
 
-            // ✅ Email göndərilir
+            
             try
             {
                 await _emailSender.SendEmailAsync(model.Email, "Parol sıfırlama kodu", $"Kodunuz: <strong>{code}</strong>");
@@ -159,7 +164,7 @@ namespace LocatraMain.Controllers
                 return View(model);
             }
 
-            // ✅ Kod və email yadda saxlanır
+            
             TempData["ResetEmail"] = model.Email;
             TempData["ResetCode"] = code;
 
@@ -169,7 +174,7 @@ namespace LocatraMain.Controllers
 
         public IActionResult ConfirmResetCode()
         {
-            // Bu kod emaili TempData-dan oxuyub, onu silmədən verir
+            
             var email = TempData.Peek("ResetEmail") as string;
 
             return View(new ConfirmResetVm
@@ -186,7 +191,7 @@ namespace LocatraMain.Controllers
                 return View(model);
 
             string code = TempData["ResetCode"] as string;
-            string email = model.Email; // artıq TempData yox, modeldən oxu
+            string email = model.Email; 
 
             if (string.IsNullOrEmpty(code) || model.Code != code)
             {
@@ -194,7 +199,7 @@ namespace LocatraMain.Controllers
                 return View(model);
             }
 
-            // Emaili TempData ilə saxla (növbəti səhifədə istifadə üçün)
+            
             TempData["ResetConfirmedEmail"] = email;
 
             return RedirectToAction("ResetPassword");
@@ -238,7 +243,7 @@ namespace LocatraMain.Controllers
                 return View(model);
             }
 
-            // Şifrə reset edilir (parolu dəyişmək üçün əvvəlcə remove edib sonra set etmək olar)
+            
             var removePass = await _userManager.RemovePasswordAsync(user);
             if (!removePass.Succeeded)
             {

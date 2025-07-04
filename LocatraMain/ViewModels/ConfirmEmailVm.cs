@@ -1,4 +1,6 @@
-﻿namespace LocatraMain.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LocatraMain.ViewModels
 {
     public class ConfirmEmailVm
     {
@@ -8,7 +10,8 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
+        [Required(ErrorMessage = "Kod boş ola bilməz.")]
 
-        public string VerificationCode { get; set; } // istifadəçi bu kodu daxil edəcək
+        public string VerificationCode { get; set; } 
     }
 }

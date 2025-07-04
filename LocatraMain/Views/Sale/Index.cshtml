@@ -3,7 +3,12 @@
     ViewData["Title"] = "Təbii Məhsullar";
     var currentSearch = Context.Request.Query["search"].ToString();
 }
-
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning text-center">
+        @TempData["Message"]
+    </div>
+}
 <div class="container-fluid rustic-bg py-5">
     <div class="container">
         <h2 class="mb-4 text-center" style="font-family: 'Georgia', serif; font-weight: bold; color: #3b2d1f;">

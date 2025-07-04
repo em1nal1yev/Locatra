@@ -18,27 +18,28 @@ namespace LocatraMain.DAL
         public DbSet<WishlistItem> WishlistItems { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ProductPurchase> ProductPurchases { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            // Bid -> User əlaqəsini "Restrict" et
+            
             builder.Entity<Bid>()
                 .HasOne(b => b.User)
                 .WithMany()
                 .HasForeignKey(b => b.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Auction -> CreatedBy əlaqəsi cascade qala bilər
+            
             builder.Entity<Auction>()
                 .HasOne(a => a.CreatedBy)
                 .WithMany()
                 .HasForeignKey(a => a.CreatedById)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            //Product creating
+            
             builder.Entity<Product>()
                 .HasOne(p => p.CreatedBy)
                 .WithMany()

@@ -1,48 +1,65 @@
 ﻿@using LocatraMain.ViewModels
 @model ApplicationUserVm
 
-<div class="container">
-    <form asp-action="Register" method="post">
-        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+@{
+    ViewData["Title"] = "Qeydiyyat";
+}
 
-        <div class="form-group">
-            <label>Name</label>
-            <input asp-for="Name" class="form-control" placeholder="Enter Name">
-            <span asp-validation-for="Name" class="text-danger"></span>
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="text-center mb-4">
+        <h3 class="mt-2">Locatra - Qeydiyyat</h3>
+        <p class="text-muted">Zəhmət olmasa qeydiyyat formasını doldurun.</p>
+    </div>
+
+    <form asp-action="Register" method="post" class="border p-4 rounded shadow-sm bg-white">
+        <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+
+        <div class="mb-3">
+            <label class="form-label">Ad</label>
+            <input asp-for="Name" class="form-control" placeholder="Adınızı daxil edin">
+            <span asp-validation-for="Name" class="text-danger small"></span>
         </div>
 
-        <div class="form-group">
-            <label>SurName</label>
-            <input asp-for="Surname" class="form-control" placeholder="Enter SurName">
-            <span asp-validation-for="Surname" class="text-danger"></span>
+        <div class="mb-3">
+            <label class="form-label">Soyad</label>
+            <input asp-for="Surname" class="form-control" placeholder="Soyadınızı daxil edin">
+            <span asp-validation-for="Surname" class="text-danger small"></span>
         </div>
 
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input asp-for="Email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input asp-for="Email" class="form-control" placeholder="nümunə: example@gmail.com">
+            <span asp-validation-for="Email" class="text-danger small"></span>
         </div>
 
-        <div class="form-group">
-            <label>User Name</label>
-            <input asp-for="Username" class="form-control" placeholder="Enter UserName">
-            <span asp-validation-for="Username" class="text-danger"></span>
+        <div class="mb-3">
+            <label class="form-label">İstifadəçi Adı</label>
+            <input asp-for="Username" class="form-control" placeholder="İstifadəçi adınızı seçin">
+            <span asp-validation-for="Username" class="text-danger small"></span>
         </div>
 
-        <div class="form-group">
-            <label>Password</label>
-            <input asp-for="Password" class="form-control" placeholder="Password">
-            <span asp-validation-for="Password" class="text-danger"></span>
+        <div class="mb-3">
+            <label class="form-label">Şifrə</label>
+            <input asp-for="Password" class="form-control" placeholder="Şifrə daxil edin" type="password">
+            <span asp-validation-for="Password" class="text-danger small"></span>
         </div>
 
-        <div class="form-group">
-            <label>Confirm Password</label>
-            <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password">
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        <div class="mb-3">
+            <label class="form-label">Şifrəni təkrarla</label>
+            <input asp-for="ConfirmPassword" class="form-control" placeholder="Şifrəni yenidən yazın" type="password">
+            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <button type="submit" class="btn btn-success">Qeydiyyatdan keç</button>
+        </div>
+
+        <div class="text-center mt-3">
+            <a asp-controller="Account" asp-action="Login" class="text-primary fw-semibold small text-decoration-none">
+                Artıq hesabın var? Giriş et
+            </a>
+        </div>
+
     </form>
 </div>
 

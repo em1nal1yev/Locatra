@@ -40,7 +40,7 @@ namespace LocatraMain.Areas.Admin.Controllers
             return View(pending);
         }
 
-        // APPROVE AUCTION
+        
         public async Task<IActionResult> Approve(int id)
         {
             var auction = await _context.Auctions.FindAsync(id);
@@ -52,7 +52,7 @@ namespace LocatraMain.Areas.Admin.Controllers
             return RedirectToAction(nameof(PendingAuctions));
         }
 
-        //Reejct auction
+        
         public async Task<IActionResult> Reject(int id)
         {
             var auction = await _context.Auctions
@@ -62,7 +62,7 @@ namespace LocatraMain.Areas.Admin.Controllers
 
             if (auction == null) return NotFound();
 
-            // Əvvəl şəkilləri və təklifləri sil (əgər cascade yoxdursa)
+            
             _context.AuctionImages.RemoveRange(auction.Images);
             _context.Bids.RemoveRange(auction.Bids);
 
@@ -72,7 +72,7 @@ namespace LocatraMain.Areas.Admin.Controllers
             TempData["Message"] = "Auksion silindi.";
             return RedirectToAction(nameof(PendingAuctions));
         }
-        // END AUCTION (optional)
+        
         public async Task<IActionResult> EndAuction(int id)
         {
             var auction = await _context.Auctions.FindAsync(id);

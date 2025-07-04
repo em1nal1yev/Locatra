@@ -40,7 +40,29 @@ namespace LocatraMain.Controllers
             return View(cartItems);
         }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> IncreaseQuantity(int id)
+        {
+            var item = await _context.CartItems.FindAsync(id);
+            if (item != null)
+            {
+                item.Quantity++;
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public async Task<IActionResult> DecreaseQuantity(int id)
+        {
+            var item = await _context.CartItems.FindAsync(id);
+            if (item != null && item.Quantity > 1)
+            {
+                item.Quantity--;
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpPost]
         public async Task<IActionResult> Remove(int id)
         {
@@ -63,6 +85,11 @@ namespace LocatraMain.Controllers
                 .Where(c => c.UserId == user.Id)
                 .ToListAsync();
 
+            if (!cartItems.Any())
+            {
+                TempData["Message"] = "Səbət boşdur. Zəhmət olmasa məhsul əlavə edin.";
+                return RedirectToAction("Index", "Sale"); 
+            }
             var vm = new CheckoutViewModel
             {
                 CartItems = cartItems
@@ -124,6 +151,8 @@ namespace LocatraMain.Controllers
                 .Where(c => c.UserId == user.Id)
                 .ToListAsync();
 
+
+
             foreach (var item in cartItems)
             {
                 var seller = item.Product.CreatedBy;
@@ -140,7 +169,19 @@ namespace LocatraMain.Controllers
 
                     await _emailSender.SendEmailAsync(seller.Email, subject, message);
                 }
+
+                var purchase = new ProductPurchase
+                {
+                    UserId = user.Id,
+                    ProductId = item.Product.Id,
+                    PurchasedAt = DateTime.Now,
+                    DeliveryAddress = address
+                };
+                _context.ProductPurchases.Add(purchase);
             }
+
+
+
 
 
             _context.CartItems.RemoveRange(cartItems);

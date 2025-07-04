@@ -33,9 +33,9 @@ namespace LocatraMain.Models.Auction
 
         public AuctionStatus Status { get; set; } = AuctionStatus.Pending;
 
-        // Əlaqələr
-        public string CreatedById { get; set; }  // User ID
-        public ApplicationUser CreatedBy { get; set; } // Navigation property
+        
+        public string CreatedById { get; set; }  
+        public ApplicationUser CreatedBy { get; set; } 
 
         public string? WinnerId { get; set; }
         public ApplicationUser? Winner { get; set; }

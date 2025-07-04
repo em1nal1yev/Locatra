@@ -9,7 +9,7 @@ namespace LocatraMain.Models.Sale
         [Required]
         public string ImageUrl { get; set; }
 
-        // Xarici açar
+        
         public int ProductId { get; set; }
         public Product Product { get; set; }
     }

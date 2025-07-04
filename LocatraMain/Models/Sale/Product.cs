@@ -22,7 +22,7 @@ namespace LocatraMain.Models.Sale
         [Required, Range(0.01, 10000)]
         public decimal Price { get; set; }
 
-        // Əvvəlki tək şəkil silinir, yerinə çoxlu şəkil gəlir
+       
         public ICollection<ProductImage> Images { get; set; }
 
         public ICollection<Review> Reviews { get; set; }

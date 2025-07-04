@@ -14,7 +14,7 @@ namespace LocatraMain.Models.Sale
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // Əlaqələr
+        
         [Required]
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }

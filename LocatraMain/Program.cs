@@ -87,7 +87,7 @@ namespace LocatraMain
                 }
             }
 
-            // Admin istifadəçini email ilə tap
+            
             var adminEmail = "eminal1y3v@gmail.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
