@@ -1,12 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|c:\\users\\emin\\desktop\\final\\locatramain\\locatramain\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD82A817-0746-448D-BC5D-0FF6084BEE3A}|LocatraMain\\LocatraMain.csproj|solutionrelative:locatramain\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "LocatraMain\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Shared\\_Layout.cshtml*",
+              "RelativeToolTip": "LocatraMain\\Views\\Shared\\_Layout.cshtml*",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADQAAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-04T12:46:43.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "LocatraMain\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Views\\Home\\Index.cshtml*",
+              "RelativeToolTip": "LocatraMain\\Views\\Home\\Index.cshtml*",
+              "ViewState": "AgIAADIAAAAAAAAAAAAcwEMAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-04T12:44:09.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "LocatraMain\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Emin\\Desktop\\Final\\LocatraMain\\LocatraMain\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "LocatraMain\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T12:44:04.874Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
